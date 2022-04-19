@@ -106,7 +106,7 @@ export class AppComponent {
     var dobDate = new Date(this.dob); 
     var diff = Math.abs(currentDate.getTime() - dobDate.getTime());
     this.diffDays = Math.ceil(diff / (1000 * 3600 * 24));
-    alert(this.diffDays);
+    //alert(this.diffDays);
     return this.diffDays;
 }
 
