@@ -31,8 +31,9 @@ export class AppComponent {
   }
   selectedOccupation: string = '';
   name: string = '';
-  age: any = '';
-  dob: string = '';
+  age: any;
+  diffDays: any;
+  dob: any;
   coveramount: any;
   premium: any;
   requiredForm: any;
@@ -40,6 +41,76 @@ export class AppComponent {
   numberRegEx = "^[0-9]*$";
 
   public occupations1?: Occupations[];
+
+
+  public CalculateAge(): void {
+    if (this.dob) {
+
+      var currentDate = new Date();
+      var dobDate = new Date(this.dob); 
+      var currentMonth = currentDate.getMonth();
+      var dobMonth = dobDate.getMonth();
+
+
+      alert(currentDate);
+      alert(dobDate);
+
+      if (new Date(this.dob) > currentDate) {
+        alert("Date of birth can not be in futrue!!!");
+        return;
+      }
+      //get years 
+      var yearAge = (currentDate.getFullYear() - dobDate.getFullYear());
+
+      //get months  
+      if (currentMonth >= dobMonth)
+        //get months when current month is greater  
+        var monthAge = currentMonth - dobMonth;
+      else {
+        yearAge--;
+        var monthAge = 12 + currentMonth - dobMonth;
+      }
+
+       var AgeInMonths = currentDate.getMonth() - dobDate.getMonth();
+
+
+
+      //get days  
+      if (currentDate >= dobDate)
+        //get days when the current date is greater  
+        var dateAge = (currentDate.getDate() - dobDate.getDate());
+      else {
+        monthAge--;
+        dateAge = 31 + (currentDate.getDate() - dobDate.getDate());
+
+        if (monthAge < 0) {
+          monthAge = 11;
+          yearAge--;
+        }
+      }  
+
+
+      this.age = yearAge + " Years " + monthAge + " Months " + dateAge + " Days ";
+
+
+     
+      
+
+     
+
+    }
+  }
+
+  public getDaydiff() {
+
+   
+    var currentDate = new Date();
+    var dobDate = new Date(this.dob); 
+    var diff = Math.abs(currentDate.getTime() - dobDate.getTime());
+    this.diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+    alert(this.diffDays);
+    return this.diffDays;
+}
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     
@@ -54,7 +125,7 @@ export class AppComponent {
     
   }
 
-  //Create required field validator for name
+  //Create required field validator
   myForm() {
     this.requiredForm = this.fb.group({
       name: ['', Validators.required],
@@ -69,13 +140,13 @@ export class AppComponent {
   selected(event: any) {
 
 
-
     this.selectedOccupation = event.target.value;
   /*  alert(this.selectedOccupation);*/
 
     let queryParams = new HttpParams();
     queryParams = queryParams.append("selectedOccupation", this.selectedOccupation);
-    queryParams = queryParams.append("age", this.age);
+    queryParams = queryParams.append("diffDays",
+      this.getDaydiff());
     queryParams = queryParams.append("coveramount", this.coveramount);
 
  

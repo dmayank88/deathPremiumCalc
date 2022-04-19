@@ -9,18 +9,17 @@
         <span class="text-danger" style="color: red" *ngIf="requiredForm.controls['name'].hasError('required') && (requiredForm.controls['name'].dirty || requiredForm.controls['name'].touched)">&nbsp;Name is required !!</span>
         <br>
         <br>
-        <label for="age">Age:</label>
-        &nbsp;
-        <input type="text" id="age" class="form-control" formControlName="age" [(ngModel)]="age">
-        <span class="text-danger" style="color: red" *ngIf="requiredForm.controls['age'].hasError('required') && (requiredForm.controls['age'].dirty || requiredForm.controls['age'].touched)">&nbsp;Age is required !!</span>
-        <span class="text-danger" style="color: red" *ngIf="requiredForm.controls['age'].errors?.pattern">&nbsp;Only Numbers are allowed !!</span>
-        <br>
-        <br>
         <label for="age">Date of Birth:</label>
         &nbsp;
-        <input type="date" id="dob" class="form-control" formControlName="dob" [(ngModel)]="dob">
+        <input type="date" id="dob" class="form-control" formControlName="dob" [(ngModel)]="dob" (change)="CalculateAge()">
         <span class="text-danger" style="color: red" *ngIf="requiredForm.controls['dob'].hasError('required') && (requiredForm.controls['dob'].dirty || requiredForm.controls['dob'].touched)">&nbsp;Date of Birth is required !!</span>
+        <br>
+        <br>
+        <label for="age">Age:</label>
         &nbsp;
+        <input type="text" id="age" class="form-control" formControlName="age" [(ngModel)]="age"  readonly>
+        <!--<span class="text-danger" style="color: red" *ngIf="requiredForm.controls['age'].hasError('required') && (requiredForm.controls['age'].dirty || requiredForm.controls['age'].touched)">&nbsp;Age is required !!</span>
+        <span class="text-danger" style="color: red" *ngIf="requiredForm.controls['age'].errors?.pattern">&nbsp;Only Numbers are allowed !!</span>-->
         <br>
         <br>
         <label for="coveramount">Death – Sum Insured</label>
@@ -40,7 +39,7 @@
         </select>
         <span class="text-danger" style="color: red" *ngIf="requiredForm.controls['occupation'].hasError('required') && (requiredForm.controls['occupation'].dirty || requiredForm.controls['occupation'].touched)">&nbsp;Select required occupation !!</span>
         &nbsp;
-        <br>    
+        <br>
         <br>
         <br>
         <br>
