@@ -127,7 +127,7 @@ export class AppComponent {
   myForm() {
     this.requiredForm = this.fb.group({
       name: ['', Validators.required],
-      age: ['', [Validators.required, Validators.pattern(this.numberRegEx)]],
+      age: [],
       dob: ['', Validators.required],
       occupation: ['', Validators.required],
       coveramount: ['', [Validators.required, Validators.pattern(this.numberRegEx)]]
@@ -136,6 +136,16 @@ export class AppComponent {
   
 
   selected(event: any) {
+
+    if (this.requiredForm.invalid) {
+      this.requiredForm.get('name').markAsTouched();
+      this.requiredForm.get('dob').markAsTouched();
+      this.requiredForm.get('coveramount').markAsTouched();
+      this.requiredForm.get('occupation').markAsTouched();
+      this.requiredForm.get('age').markAsTouched();
+      return;
+    }
+
 
 
     this.selectedOccupation = event.target.value;

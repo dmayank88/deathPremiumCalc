@@ -1,7 +1,7 @@
 <h1 id="tableLabel">Death Premium Calculator !!!</h1>
 
 <div>
-  <div [formGroup]="requiredForm">
+  <div [formGroup]="requiredForm" (ngsubmit)="selected($event)">
     <div class="col-md-12">
       <div class="form-group">
         <label for="name">Name:</label>&nbsp;
