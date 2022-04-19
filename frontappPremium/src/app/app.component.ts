@@ -43,9 +43,7 @@ export class AppComponent {
   public occupations1?: Occupations[];
 
 
-  public IsDateofBirthInFuture() {
-
-}
+  
 
   public CalculateAge(): void {
     if (this.dob) {
