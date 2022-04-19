@@ -23,7 +23,7 @@ namespace BackendPremium.Controllers
         /// <param name="coveramount"></param>
         /// <returns></returns>
         [HttpGet]
-        public double GetDeathPemiumCalculated(string selectedOccupation, int age, double coveramount)
+        public double GetDeathPemiumCalculated(string selectedOccupation, int diffDays, double coveramount)
         {
             double DeathPremium = 0.0;
             try
@@ -32,8 +32,11 @@ namespace BackendPremium.Controllers
                 double ratingfactor =
                     premiumCalcRepo.GetRatingFactor(selectedOccupation);
 
+                double yrs = (double)diffDays;
+                yrs=(yrs / 365);
+                yrs  = Math.Round(yrs, 2);
                 //Calcaulate Death Premium
-                DeathPremium = (coveramount * ratingfactor * age) / 1000 * 12;
+                DeathPremium = (coveramount * ratingfactor * diffDays) / 1000 * 12;
 
             }
             catch (Exception ex)
