@@ -36,7 +36,7 @@ namespace BackendPremium.Controllers
                 yrs=(yrs / 365);
                 yrs  = Math.Round(yrs, 2);
                 //Calcaulate Death Premium
-                DeathPremium = (coveramount * ratingfactor * diffDays) / 1000 * 12;
+                DeathPremium = (coveramount * ratingfactor * yrs) / 1000 * 12;
 
             }
             catch (Exception ex)
