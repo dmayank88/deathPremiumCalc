@@ -52,8 +52,6 @@ export class AppComponent {
       var dobMonth = dobDate.getMonth();
 
 
-      alert(currentDate);
-      alert(dobDate);
 
       if (new Date(this.dob) > currentDate) {
         alert("Date of birth can not be in futrue!!!");
