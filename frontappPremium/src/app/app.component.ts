@@ -153,7 +153,14 @@ export class AppComponent {
 
 
     this.selectedOccupation = event.target.value;
-  /*  alert(this.selectedOccupation);*/
+    /*  alert(this.selectedOccupation);*/
+
+    if (this.selectedOccupation == 'Select Occupation' ) {
+
+      this.selectedOccupation = '';
+      //alert("called");
+      return;
+}
 
     let queryParams = new HttpParams();
     queryParams = queryParams.append("selectedOccupation", this.selectedOccupation);

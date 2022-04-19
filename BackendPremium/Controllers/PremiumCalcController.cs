@@ -32,9 +32,8 @@ namespace BackendPremium.Controllers
                 double ratingfactor =
                     premiumCalcRepo.GetRatingFactor(selectedOccupation);
 
-                double yrs = (double)diffDays;
-                yrs=(yrs / 365);
-                yrs  = Math.Round(yrs, 2);
+                double yrs = (diffDays / 365.25);
+               
                 //Calcaulate Death Premium
                 DeathPremium = (coveramount * ratingfactor * yrs) / 1000 * 12;
 
