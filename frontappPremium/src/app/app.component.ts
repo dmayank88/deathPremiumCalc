@@ -43,6 +43,10 @@ export class AppComponent {
   public occupations1?: Occupations[];
 
 
+  public IsDateofBirthInFuture() {
+
+}
+
   public CalculateAge(): void {
     if (this.dob) {
 
@@ -55,6 +59,8 @@ export class AppComponent {
 
       if (new Date(this.dob) > currentDate) {
         alert("Date of birth can not be in futrue!!!");
+        this.dob='';
+        //alert(this.selectedOccupation);
         return;
       }
       //get years 
